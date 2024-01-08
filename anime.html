@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #loading-container {
+            position: relative;
+            text-align: center;
+        }
+
+        #loading-bar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: #f00;
+            /* Initial color */
+            animation: rotate 1.5s linear infinite, changeColor 3s infinite;
+        }
+
+        .loading-text {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes changeColor {
+            0% {
+                border-top-color: #f00;
+            }
+
+            50% {
+                border-top-color: #0f0;
+            }
+
+            100% {
+                border-top-color: #00f;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loading-container">
+        <div id="loading-bar"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    // Check if the animation has been shown before
+    var animationShown = localStorage.getItem("animationShown");
+
+    // If the animation hasn't been shown, display it and set the flag
+    if (!animationShown) {
+        showCircularAnimation();
+        localStorage.setItem("animationShown", "true");
+    } else {
+        // If the animation has been shown before, redirect to the main content page
+        window.location.href = "/f2/index.html";
+    }
+});
+
+function showCircularAnimation() {
+    // Your existing circular animation code goes here
+    var loadingContainer = document.getElementById("loading-container");
+    loadingContainer.style.display = "flex"; // Show the loading container
+
+    // Simulate loading time with a fixed delay
+    setTimeout(function () {
+        // Redirect to the main content page
+        window.location.href = "/f2/index.html";
+    }, 3000); // Adjust the duration as needed
+}
+
+    </script>
+</body>
+
+</html>

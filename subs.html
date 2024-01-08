@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Page</title>
+    <style>
+        /* Your existing styles here */
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.subscription-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Subscribe to Our Newsletter</h1>
+    </header>
+
+    <div class="subscription-form">
+        <form id="subscribeForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="package">Choose a Package:</label>
+            <select id="package" name="package" required>
+                <option value="free">Free ($0)</option>
+                <option value="basic">Basic ($1)</option>
+                <option value="advance">Advance ($10)</option>
+                <option value="agent">Agent ($100)</option>
+                <option value="manager">Manager ($1000)</option>
+            </select>
+
+            <button type="submit">Subscribe</button>
+        </form>
+
+        <div id="selectedPackage">
+            <!-- Display selected package and price here -->
+        </div>
+    </div>
+
+    <script>document.addEventListener("DOMContentLoaded", function () {
+        var subscribeForm = document.getElementById("subscribeForm");
+        var selectedPackageElement = document.getElementById("selectedPackage");
+    
+        subscribeForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            var email = document.getElementById("email").value;
+            var selectedPackage = document.getElementById("package").value;
+    
+            // Display selected package and price
+            var packagePrice = getPackagePrice(selectedPackage);
+            selectedPackageElement.innerHTML = `<p>Selected Package: ${selectedPackage} ($${packagePrice})</p>`;
+    
+            // You can add additional logic to submit the form data to a server-side script.
+            // For simplicity, let's log the email and selected package to the console.
+            console.log("Email submitted:", email);
+            console.log("Selected Package:", selectedPackage);
+        });
+    
+        function getPackagePrice(packageType) {
+            // Add logic to fetch the price based on the selected package
+            switch (packageType) {
+                case "free":
+                    return 0;
+                case "basic":
+                    return 1;
+                case "advance":
+                    return 10;
+                case "agent":
+                    return 100;
+                case "manager":
+                    return 1000;
+                default:
+                    return 0; // Default to free if the package type is not recognized
+            }
+        }
+    });
+    </script>
+</body>
+</html>
